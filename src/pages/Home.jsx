@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 
-const App = () => {
+const Home = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [formData, setFormData] = useState({
@@ -170,62 +172,7 @@ const App = () => {
       />
 
       {/* Header Navigation */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-95 backdrop-blur-sm border-b border-gray-800">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="text-yellow-400 font-bold text-xl tracking-tight">KUGI TECH</div>
-          <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
-            {['Projects', 'Services', 'About', 'Contact'].map((item) => (
-              <a 
-                key={item} 
-                href={`#${item.toLowerCase()}`} 
-                className="relative font-medium hover:text-yellow-400 transition-colors after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-yellow-400 after:transition-all hover:after:w-full"
-              >
-                {item}
-              </a>
-            ))}
-            <button className="bg-yellow-400 text-black px-5 py-2 rounded-full font-medium text-sm sm:text-base hover:bg-yellow-300 transition-all shadow-lg hover:shadow-yellow-500/30 whitespace-nowrap">
-              GET IN TOUCH
-            </button>
-          </nav>
-          <button 
-            className="md:hidden text-white focus:outline-none"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            <div className="space-y-1.5">
-              {[...Array(3)].map((_, i) => (
-                <div key={i} className="w-6 h-0.5 bg-white rounded-full transition-transform" />
-              ))}
-            </div>
-          </button>
-        </div>
-        
-        {isMenuOpen && (
-          <div className="md:hidden bg-black border-t border-gray-800 py-6 px-4">
-            <ul className="space-y-4">
-              {['Projects', 'Services', 'About', 'Contact'].map((item) => (
-                <li key={item}>
-                  <a 
-                    href={`#${item.toLowerCase()}`} 
-                    className="block text-xl font-medium hover:text-yellow-400 transition-colors py-2"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
-              <li>
-                <button 
-                  className="bg-yellow-400 text-black w-full py-3 rounded-full font-medium mt-2 hover:bg-yellow-300 transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  GET IN TOUCH
-                </button>
-              </li>
-            </ul>
-          </div>
-        )}
-      </header>
+      <Navbar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
 
       {/* Hero Section */}
       <section className="relative min-h-screen pt-16 pb-8 md:pt-20 md:pb-16 flex flex-col justify-start overflow-hidden">
@@ -521,41 +468,9 @@ const App = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 md:py-12 border-t border-gray-800 bg-black relative z-10">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6 md:gap-8 mb-8 md:mb-12">
-            <div className="text-yellow-400 font-bold text-xl md:text-2xl tracking-tight">KUGI TECH</div>
-            <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-              {['Projects', 'Services', 'About', 'Contact'].map((item) => (
-                <a 
-                  key={item} 
-                  href={`#${item.toLowerCase()}`} 
-                  className="text-gray-400 hover:text-yellow-400 transition-colors font-medium text-sm md:text-base"
-                >
-                  {item}
-                </a>
-              ))}
-            </div>
-            <div className="flex space-x-4">
-              {['𝕏', 'in', 'GH'].map((icon, index) => (
-                <a 
-                  key={index} 
-                  href="#" 
-                  className="w-9 h-9 md:w-10 md:h-10 rounded-full border border-gray-800 flex items-center justify-center text-gray-400 hover:text-yellow-400 hover:border-yellow-400 transition-all text-sm"
-                  aria-label={`${icon} link`}
-                >
-                  {icon}
-                </a>
-              ))}
-            </div>
-          </div>
-          <div className="text-center text-gray-600 text-xs sm:text-sm pt-6 md:pt-8 border-t border-gray-800">
-            &copy; {new Date().getFullYear()} Kugi Tech. Nairobi, Kenya. All rights reserved.
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
 
-export default App;
+export default Home;
