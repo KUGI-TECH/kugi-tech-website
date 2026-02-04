@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 
-import MainLayout from './layouts/MainLayout'
+import Layout from './layouts/Layout'
 import Home from './pages/Home'
 import Contact from './pages/Contact'
 import About from './pages/About'
@@ -12,7 +12,7 @@ import EstimateProject from './pages/EstimateProject'
 export default function App() {
   return (
     <Routes>
-      <Route element={<MainLayout />}>
+      <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
