@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Footer from '../components/Footer'
-import Navbar from '../components/Navbar'
+import { Link } from 'react-router-dom'
+
 
 const Services = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -293,9 +293,6 @@ const Services = () => {
         style={{ background: 'radial-gradient(circle at center, #0a0a0a 0%, #000000 100%)' }}
       />
 
-      {/* Header Navigation */}
-      <Navbar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-
       {/* Hero Section */}
       <section className="relative min-h-screen pt-16 pb-8 md:pt-20 md:pb-16 flex flex-col justify-center overflow-hidden">
         <div className="container mx-auto px-4 relative z-10 text-center">
@@ -561,19 +558,20 @@ const Services = () => {
               Let's discuss how our services can help you achieve your business goals. We're here to answer your questions and provide a customized solution.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-yellow-400 text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-300 transition-all shadow-lg hover:shadow-yellow-500/50">
-                SCHEDULE CONSULTATION
-              </button>
-              <button className="border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-black transition-all">
-                VIEW FULL PORTFOLIO
-              </button>
-            </div>
+              <Link to="/estimateproject">
+                <button className="bg-yellow-400 text-black px-6 py-3 sm:px-8 sm:py-4 rounded-full font-bold text-sm sm:text-base hover:bg-yellow-300 transition-all shadow-lg hover:shadow-yellow-500/50 transform hover:-translate-y-1 whitespace-nowrap">
+                  ESTIMATE PROJECT
+                </button>
+              </Link>
+              <Link to="/projects">
+                <button className="border-2 border-white text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full font-bold text-sm sm:text-base hover:bg-white hover:text-black transition-all transform hover:-translate-y-1 whitespace-nowrap">
+                  VIEW OUR WORK
+                </button>
+              </Link>
+           </div>
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <Footer />
     </div>
   );
 };

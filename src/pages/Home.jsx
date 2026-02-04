@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
+import { Link } from 'react-router-dom'
+
 
 const Home = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -171,8 +171,6 @@ const Home = () => {
         style={{ background: 'radial-gradient(circle at center, #0a0a0a 0%, #000000 100%)' }}
       />
 
-      {/* Header Navigation */}
-      <Navbar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
 
       {/* Hero Section */}
       <section className="relative min-h-screen pt-16 pb-8 md:pt-20 md:pb-16 flex flex-col justify-start overflow-hidden">
@@ -191,12 +189,16 @@ const Home = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mb-10">
-            <button className="bg-yellow-400 text-black px-6 py-3 sm:px-8 sm:py-4 rounded-full font-bold text-sm sm:text-base hover:bg-yellow-300 transition-all shadow-lg hover:shadow-yellow-500/50 transform hover:-translate-y-1 whitespace-nowrap">
-              ESTIMATE PROJECT
-            </button>
-            <button className="border-2 border-white text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full font-bold text-sm sm:text-base hover:bg-white hover:text-black transition-all transform hover:-translate-y-1 whitespace-nowrap">
-              VIEW OUR WORK
-            </button>
+            <Link to="/estimateproject">
+              <button className="bg-yellow-400 text-black px-6 py-3 sm:px-8 sm:py-4 rounded-full font-bold text-sm sm:text-base hover:bg-yellow-300 transition-all shadow-lg hover:shadow-yellow-500/50 transform hover:-translate-y-1 whitespace-nowrap">
+                ESTIMATE PROJECT
+              </button>
+            </Link>
+            <Link to="/projects">
+              <button className="border-2 border-white text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full font-bold text-sm sm:text-base hover:bg-white hover:text-black transition-all transform hover:-translate-y-1 whitespace-nowrap">
+                VIEW OUR WORK
+              </button>
+            </Link>
           </div>
           
           <div className="flex flex-wrap justify-center gap-6 sm:gap-8 text-center max-w-3xl mx-auto px-2">
@@ -466,9 +468,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <Footer />
     </div>
   );
 };

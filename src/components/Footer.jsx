@@ -21,7 +21,7 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-10">
             <div className="text-yellow-400 font-bold text-2xl md:text-3xl tracking-tight">KUGI TECH</div>
             <div className="flex flex-wrap justify-center gap-6">
-              {['Projects', 'Services', 'About', 'Contact', 'Careers', 'Blog'].map((item) => (
+              {['Projects', 'Services', 'About', 'Contact', 'Careers'].map((item) => (
                 <a 
                   key={item} 
                   href={`#${item.toLowerCase()}`} 

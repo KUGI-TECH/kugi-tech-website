@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Footer from '../components/Footer'
-import Navbar from '../components/Navbar'
 
 
 const Contact = () => {
@@ -173,8 +171,6 @@ const Contact = () => {
         style={{ background: 'radial-gradient(circle at center, #0a0a0a 0%, #000000 100%)' }}
       />
 
-      {/* Header Navigation */}
-      <Navbar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
 
       {/* Hero Section */}
       <section className="relative min-h-screen pt-24 pb-16 md:pt-32 md:pb-24 flex flex-col justify-center overflow-hidden">
@@ -396,9 +392,6 @@ const Contact = () => {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <Footer />
     </div>
   );
 };

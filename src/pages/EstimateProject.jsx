@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Footer from '../components/Footer'
-import Navbar from '../components/Navbar'
 
 const EstimateProject = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -257,9 +255,6 @@ const EstimateProject = () => {
         className="fixed inset-0 z-0"
         style={{ background: 'radial-gradient(circle at center, #0a0a0a 0%, #000000 100%)' }}
       />
-
-      {/* Header Navigation */}
-      <Navbar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
 
       {/* Hero Section */}
       <section className="relative min-h-screen pt-16 pb-8 md:pt-20 md:pb-16 flex flex-col justify-center overflow-hidden">
@@ -677,33 +672,6 @@ const EstimateProject = () => {
           </div>
         </div>
       </section>
-
-      {/* CTA Section */}
-      <section className="py-20 md:py-24 bg-gradient-to-b from-black to-gray-900 relative z-10">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center bg-gradient-to-r from-yellow-400/10 to-transparent border border-yellow-400/30 rounded-3xl p-12 md:p-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mb-6 text-yellow-400">
-              Ready to Get Started?
-            </h2>
-            <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
-              Don't let uncertainty hold back your project. Get a clear, detailed estimate today and take the first step toward bringing your vision to life.
-            </p>
-            <button 
-              onClick={() => setStep(1)}
-              className="bg-yellow-400 text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-300 transition-all shadow-lg hover:shadow-yellow-500/50 inline-flex items-center"
-            >
-              <span>START YOUR ESTIMATE NOW</span>
-              <span className="ml-2 text-xl">→</span>
-            </button>
-            <p className="mt-6 text-gray-500 text-sm">
-              Prefer to talk? Call us directly at <a href="tel:+254700000000" className="text-yellow-400 hover:underline">+254 700 000 000</a>
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <Footer />
     </div>
   );
 };

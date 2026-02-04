@@ -18,7 +18,7 @@ const Navbar = ({ isMenuOpen, setIsMenuOpen }) => {
      ${isActive ? 'after:w-full' : 'after:w-0 hover:after:w-full'}`
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-95 backdrop-blur-sm border-b border-gray-800">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-95 backdrop-blur-sm border-b border-gray-800 text-white">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <NavLink to="/" className="text-yellow-400 font-bold text-xl tracking-tight">
           KUGI TECH
