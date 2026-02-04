@@ -7,6 +7,17 @@ const Projects = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedProject, setSelectedProject] = useState(null);
 
+  useEffect(() => {
+  if (selectedProject) {
+    document.body.style.overflow = 'hidden'
+  } else {
+    document.body.style.overflow = ''
+  }
+
+  return () => {
+    document.body.style.overflow = ''
+  }
+  }, [selectedProject])
 
 
   const projects = [
@@ -90,60 +101,76 @@ const Projects = () => {
     ? projects 
     : projects.filter(project => project.category === selectedCategory);
 
-  const ProjectModal = ({ project, onClose }) => (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm">
-      <div className="bg-gray-900 border border-gray-800 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+  const ProjectModal = ({ project, onClose }) => {
+  const modalRef = useRef(null)
+
+  // Close on ESC
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        onClose()
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [onClose])
+
+  // Close when clicking outside modal
+  const handleBackdropClick = (e) => {
+    if (modalRef.current && !modalRef.current.contains(e.target)) {
+      onClose()
+    }
+  }
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm"
+      onMouseDown={handleBackdropClick}
+      onWheel={(e) => e.stopPropagation()}
+    >
+      <div
+        ref={modalRef}
+        className="bg-gray-900 border border-gray-800 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+        onMouseDown={(e) => e.stopPropagation()}
+      >
+        {/* Image */}
         <div className="relative">
-          <img 
-            src={project.image} 
+          <img
+            src={project.image}
             alt={project.title}
             className="w-full h-64 md:h-80 object-cover"
           />
-          <button 
+          <button
             onClick={onClose}
             className="absolute top-4 right-4 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white text-xl transition-all"
           >
             ✕
           </button>
         </div>
-        
+
+        {/* Content */}
         <div className="p-6 md:p-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold mb-2">{project.title}</h2>
-              <p className="text-yellow-400">{project.client} • {project.year}</p>
-            </div>
-            <span className="inline-block bg-yellow-400/10 text-yellow-300 px-3 py-1 rounded-full text-sm mt-2 md:mt-0">
-              {categories.find(cat => cat.id === project.category)?.name || project.category}
-            </span>
-          </div>
-          
-          <p className="text-gray-300 mb-6 text-lg">{project.description}</p>
-          
-          <div className="mb-8">
-            <h3 className="text-xl font-bold mb-4 text-yellow-400">Key Features</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {project.features.map((feature, index) => (
-                <div key={index} className="flex items-center text-gray-300">
-                  <span className="text-yellow-400 mr-3">✓</span>
-                  {feature}
-                </div>
-              ))}
+              <h2 className="text-2xl md:text-3xl font-bold mb-2">
+                {project.title}
+              </h2>
+              <p className="text-yellow-400">
+                {project.client} • {project.year}
+              </p>
             </div>
           </div>
-          
-          <div className="flex flex-col sm:flex-row gap-4">
-            <button className="bg-yellow-400 text-black px-6 py-3 rounded-xl font-bold hover:bg-yellow-300 transition-all">
-              View Live Demo
-            </button>
-            <button className="border border-gray-700 text-white px-6 py-3 rounded-xl font-bold hover:border-yellow-400 hover:text-yellow-400 transition-all">
-              View Case Study
-            </button>
-          </div>
+
+          <p className="text-gray-300 mb-6 text-lg">
+            {project.description}
+          </p>
         </div>
       </div>
     </div>
-  );
+  )
+}
+
 
   return (
     <div className="font-sans text-white bg-black min-h-screen overflow-x-hidden">
